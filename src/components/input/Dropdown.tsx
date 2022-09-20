@@ -1,25 +1,40 @@
-import React, { FC, useRef } from "react"
+import React, { FC, useRef } from "react";
 
-interface IDropDownProps {
-    label: string
+export interface IOption {
+  key: string | number;
+  value: string;
+}
+export interface IDropDownProps {
+  label: string;
+  options: IOption[];
+  onChange?: (selected: IOption) => void;
 }
 
-export const DropDown: FC<IDropDownProps> = ({ label }: IDropDownProps) => {
-    const ref = useRef(null);
-    console.log(ref.current);
-
-    return <div>
-        <label htmlFor="">{label}</label>
-        <select
-            ref={ref.current}
-            //  value={data.find(obj => obj.value === selectedValue)}
-            onChange={(event) => { 
-                
-                console.log(ref.current) }}>
-            <option key={"key"} value={"value"}>aaa</option>
-            <option key={"key1"} value={"value1"}>aaa</option>
-            <option key={"key2"} value={"value2"}>aaa</option>
-            <option key={"key3"} value={"value3"}>aaa</option>
-        </select>
+export const DropDown: FC<IDropDownProps> = ({
+  label,
+  options,
+  onChange,
+}: IDropDownProps) => {
+  return (
+    <div>
+      <label htmlFor="">{label}</label>
+      <select
+        onChange={(event) => {
+          if (!onChange) return;
+          const selectedOption = options.filter(
+            (option) => option.key === event.target.value
+          );
+          onChange(selectedOption[0]);
+        }}
+      >
+        {options.map(({ key, value }) => {
+          return (
+            <option key={key} value={key}>
+              {value}
+            </option>
+          );
+        })}
+      </select>
     </div>
-}
+  );
+};
