@@ -1,6 +1,6 @@
 import React from 'react'
 import Alias from './Alias';
-import ColourPicker from './ColorPicker';
+// import ColorPicker from '.components/ColorPicker';
 import MsgCard from './MsgCard';
 import './css/Panel.css'
 
@@ -10,7 +10,7 @@ import './css/Panel.css'
 export default function Panel(){
     return(
         <div className='Panel-box'> 
-            <ColourPicker />
+            {/* <ColorPicker /> */}
             <Alias />
             <MsgCard />
         </div>
