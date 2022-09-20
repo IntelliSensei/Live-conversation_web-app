@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { TextField } from './components/input';
 import Panel from './components/Panel';
 
