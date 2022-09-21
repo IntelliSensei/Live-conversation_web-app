@@ -1,14 +1,4 @@
 .MsgCard-input{
-    border: 1px solid;
-    border-radius: 5px;
-    background-color: #265cc82d;
-    display: flex;
-    /* flex-direction: row; */
-    align-items: center;
-    /* position: fixed; */
-    margin-top: 30%;
-    text-align: center;
-    border: 1px solid;
-    justify-content: space-between;
-    flex-grow: 3;
-  }
+  /* margin-left: 1rem;
+  margin-bottom: 0.5rem; */
+}

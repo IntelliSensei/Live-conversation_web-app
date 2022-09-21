@@ -29,8 +29,7 @@ export default function App() {
           console.log("dd", nv);
         }}
       />
-
-      <ColorPalette onSelect={console.log}/>
+      <Panel />
     </div>
   );
 }
