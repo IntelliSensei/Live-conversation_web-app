@@ -1,0 +1,32 @@
+
+.color-picker {
+    /* position: absolute; */
+    height: max-content;
+}
+
+.color-selector{
+    /* outline: 1px blue solid; */
+    --circle-radius: 30px;
+}
+
+.color-selector .selected-color {
+    border-radius: 100%;
+    width:var(--circle-radius);
+    height:var(--circle-radius);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin: 5px;
+    outline: 1px solid #ccc;
+}
+
+.color-picker .palette-position {
+    position: absolute;
+    left: 10px;
+    bottom: 55px;
+}
+
+
+.color-picker .palette-container {
+    /* outline: 2px solid green; */
+    /* bottom: 225px; */
+    background-color: #fff;
+}

@@ -1,23 +1,28 @@
-import React from "react"
 import './css/ColorPicker.css'
+import React, { FC } from "react";
 
-// add interface
+
+export interface IColorOptions {
+    options: {
+        key: string,
+        value: number;
+    }
+}
 
 
-export default function ColorPicker() {
+export const ColorPicker: FC<IColorOptions> = ({options}:IColorOptions) => {
     return (
+
         <div className="ColorPicker-input">
             <label>
-                Text colour:
-                <br />
+                Pick color:
                 <select name="selectList" id="selectList">
-                    <option key="option 1">Green</option>
-                    <option key="option 2">Yellow</option>
-                    <option key="option 3">Blue</option>
+                    <option key="1" value='Green'>Green</option>
+                    <option key="2" value={'Yellow'}>Yellow</option>
+                    <option key="3" value={'Blue'}>Blue</option>
                 </select>
             </label>
         </div>
     )
 }
-
 

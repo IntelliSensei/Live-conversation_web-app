@@ -5,8 +5,7 @@ export default function MsgCard() {
     return (
         <div className="MsgCard-input">
             <label>
-                Message: 
-                <br />
+                Message:
                 <input type="text" name="Message"/>
               </label>
         </div>
