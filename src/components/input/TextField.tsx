@@ -3,6 +3,7 @@ import React, { CSSProperties, FC } from "react";
 
 import { faBoxOpen, faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
+import "../css/GlobalStyles.css"
 
 
 export interface ITextFieldProps {
@@ -21,13 +22,12 @@ export const TextField: FC<ITextFieldProps> = ({
   icons
 
 }: ITextFieldProps) => {
-  
-  // CSS inputs // stuck at fontawesome into input fields
+
 
   return (
     <div style={style}>
       {/* icons={<FontAwesomeIcon icon={faHome} />} */}
-      <FontAwesomeIcon icon={faHome} />
+      {/* <FontAwesomeIcon icon={faHome} /> */}
       {label && <label>{label}</label>}
       <input
         style={{height: "3vh", width: "100%", margin: "0", padding: "5px", borderRadius:"10px", border: "1px solid #80b3ff", boxShadow: "1px 2px #888888"}}
@@ -37,6 +37,7 @@ export const TextField: FC<ITextFieldProps> = ({
           if (onChange) onChange(newVal);
         }}  
         placeholder={placeholder}
+        className='global-style'
       />
     </div>
   );
