@@ -31,7 +31,10 @@ export const ColorPalette: FC<IColorPalette> = ({onSelect}: IColorPalette) => {
         return (
           <div
             key={ix}
-            onClick={()=> {onSelect(color)}}
+            onClick={() => {
+              onSelect(color)
+              console.log(color);
+            }}
             style={{ backgroundColor: color }}
             className={"circle"}
           />

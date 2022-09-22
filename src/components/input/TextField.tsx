@@ -5,8 +5,6 @@ import { faBoxOpen, faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 
 
-
-
 export interface ITextFieldProps {
   label?: string;
   placeholder?: string;
@@ -23,7 +21,9 @@ export const TextField: FC<ITextFieldProps> = ({
   icons
 
 }: ITextFieldProps) => {
-  // CSS inputs
+  
+  // CSS inputs // stuck at fontawesome into input fields
+
   return (
     <div style={style}>
       {/* icons={<FontAwesomeIcon icon={faHome} />} */}
@@ -35,7 +35,7 @@ export const TextField: FC<ITextFieldProps> = ({
           const newVal = event.target.value;
           console.log({ newVal });
           if (onChange) onChange(newVal);
-        }}
+        }}  
         placeholder={placeholder}
       />
     </div>
@@ -43,5 +43,3 @@ export const TextField: FC<ITextFieldProps> = ({
 };
 
 
-
-// render(< />, document.getElementById("root"));

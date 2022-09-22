@@ -8,7 +8,7 @@ export interface IColorPicker {
 }
 
 export const ColorPicker: FC<IColorPicker> = ({defaultColor}: IColorPicker) => {
-  // added default color 
+
   defaultColor = "#ffcc00";
  
   const [selectColor, setSelectColor] = useState(defaultColor);
