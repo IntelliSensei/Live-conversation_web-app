@@ -30,7 +30,7 @@ export const TextField: FC<ITextFieldProps> = ({
       {/* <FontAwesomeIcon icon={faHome} /> */}
       {label && <label>{label}</label>}
       <input
-        style={{height: "3vh", width: "100%", margin: "0", padding: "5px", borderRadius:"10px", border: "1px solid #80b3ff", boxShadow: "1px 2px #888888"}}
+        style={{height: "3vh", width: "100%", margin: "0", padding: "5px", borderRadius:"3px", border: "1px solid #80b3ff"}}
         onChange={(event) => {
           const newVal = event.target.value;
           console.log({ newVal });
@@ -38,6 +38,7 @@ export const TextField: FC<ITextFieldProps> = ({
         }}  
         placeholder={placeholder}
         className='global-style'
+        
       />
     </div>
   );
