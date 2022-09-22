@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "./components/input";
 import { DropDown, IOption, ColorPalette } from "./components/input";
 import Panel from "./components/Panel";
+import useWebSocket, { ReadyState } from 'react-use-websocket';
+
 
 const options: IOption[] = [
   { key: "key1", value: "my val 1" },
@@ -13,12 +15,24 @@ const options: IOption[] = [
 ];
 
 export default function App() {
+
+  const [message, setMessage] = useState("");
+  const [recievedMessage, setRecievedMessage] = useState<string[]>([])
+
+  const { sendMessage, lastMessage, readyState } = useWebSocket("ws://localhost:8999");
+
+  useEffect(() => {
+    if (!lastMessage)
+      return;
+    setRecievedMessage([lastMessage.data, ...recievedMessage])
+  }, [lastMessage])
+  
   return (
     <div>
-      <TextField label="test" />
       <TextField
         placeholder="12313"
         onChange={(nv) => {
+          setMessage(nv)
           console.log("nv", nv);
         }}
       />
@@ -29,6 +43,13 @@ export default function App() {
           console.log("dd", nv);
         }}
       />
+
+      <button onClick={() => sendMessage(message + " " + new Date().toISOString())}>Send Message</button>
+      {lastMessage && <div>{lastMessage.data}</div>}
+      <hr></hr>
+        <div>
+          {recievedMessage.map(m => <p>{m}</p>) } 
+        </div>
       <Panel />
     </div>
   );
