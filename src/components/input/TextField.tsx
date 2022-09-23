@@ -35,7 +35,7 @@ export const TextField: FC<ITextFieldProps> = ({
         }}  
         placeholder={placeholder}
         className='global-style'
-        value={defaultValue}
+        defaultValue={defaultValue}
       />
     </div>
   );
