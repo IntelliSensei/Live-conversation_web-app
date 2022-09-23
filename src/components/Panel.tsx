@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./css/Panel.css";
 import { ColorPicker } from "./input/colorPicker/ColorPicker";
 import { TextField } from "./input";
@@ -8,11 +8,11 @@ import "./css/GlobalStyles.css";
 
 
 export interface IDefaultValue {
-  defaultAlias?: string;
-  defaultColor?: string;
+  alias?: string;
+  color?: string;
 }
 export interface IDefaultValueMsg {
-  defaultMessage?: string;
+  message?: string;
 }
 
 export default function Panel() {
@@ -21,14 +21,17 @@ export default function Panel() {
   const [valueMsg, setValueMsg] = useState<IDefaultValueMsg>({});
 
   useEffect(() => {
-    const strValues = sessionStorage.getItem("values");
+    const strValues = sessionStorage.getItem("valuesAliasColor");
     if (strValues) {
       const data = JSON.parse(strValues);
       setValue(data);
       return;
     }
-    setValue({ defaultAlias: "Enter Alias", defaultColor: "#ffcc00" })
-    setValueMsg({ defaultMessage: "Enter Message" })
+    else {
+      // defaults
+      setValue({ alias: "Enter Alias", color: "#ffcc00" })
+      setValueMsg({ message: "Enter Message" })
+    }
   }, [])
 
 
@@ -36,24 +39,24 @@ export default function Panel() {
     <div className="panel global-style">
       {/* <FontAwesomeIcon icon={faHome} /> */}
       <ColorPicker
-        defaultColor={value.defaultColor}
-        onSelect={(nval) => {
-          setValue({ ...value, defaultColor: nval })
-        }}
+        defaultColor={value.color}
+      // onChange={() => {
+      //   setValue({ ...value, color: value.color })
+      // }}
       />
       <TextField
         placeholder="Alias"
-        defaultValue={value.defaultAlias}
+        defaultValue={value.alias}
         onChange={(nval) => {
-          setValue({ ...value, defaultAlias: nval })
+          setValue({ ...value, alias: nval })
         }}
       />
       <TextField
         placeholder="Message"
         style={{ flexGrow: 2 }}
-        defaultValue={valueMsg.defaultMessage}
+        defaultValue={valueMsg.message}
         onChange={(nval) => {
-          setValueMsg({ ...valueMsg, defaultMessage: nval })
+          setValueMsg({ ...valueMsg, message: nval })
         }}
       />
       <button onClick={() => {

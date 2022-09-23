@@ -5,12 +5,14 @@ import { ColorPalette } from "./ColorPalette";
 
 export interface IColorPicker {
   defaultColor?: string;
-  onSelect?: (color: string) => void;
 }
 
-export const ColorPicker: FC<IColorPicker> = ({defaultColor}: IColorPicker) => {
+export const ColorPicker: FC<IColorPicker> = ({
+  defaultColor
 
-  // defaultColor = "#ffcc00";
+}: IColorPicker) => {
+
+  defaultColor = "#ffcc00";
  
   const [selectColor, setSelectColor] = useState(defaultColor);
   const [showPalette, setShowPalette] = useState(false);
