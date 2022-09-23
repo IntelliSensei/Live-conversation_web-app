@@ -2,66 +2,66 @@ import React, { FC, useEffect, useState } from "react";
 import "./css/Panel.css";
 import { ColorPicker } from "./input/colorPicker/ColorPicker";
 import { TextField } from "./input";
-import { faHome } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+  FontAwesomeIcon,
+  FontAwesomeIconProps,
+} from "@fortawesome/react-fontawesome";
 import "./css/GlobalStyles.css";
 
+export interface IUserConfig {
+  alias: string;
+  color: string;
+}
+export interface IWSMessagePKG {
+  alias: string;
+  color: string;
+  message: string;
+}
 
-export interface IDefaultValue {
-  alias?: string;
-  color?: string;
-}
-export interface IDefaultValueMsg {
-  message?: string;
-}
+// {
+//   alias: "anonymise",
+//   color: "#008000",
+// };
 
 export default function Panel() {
+  const defaultConfig: IUserConfig = JSON.parse(sessionStorage.getItem("userConfig") ||  '{}')
+  console.log(defaultConfig)
+  const [userConfig, setUserConfig] = useState<IUserConfig>({
+    ...defaultConfig,
+  });
+  const [msgPkg, setMsgPkg] = useState<IWSMessagePKG>({
+    ...defaultConfig,
+    message: "",
+  });
 
-  const [value, setValue] = useState<IDefaultValue>({});
-  const [valueMsg, setValueMsg] = useState<IDefaultValueMsg>({});
+  useEffect(() => console.log({ msgPkg }), [msgPkg]);
+  useEffect(() => setMsgPkg({ ...msgPkg, ...userConfig }), [userConfig]);
 
-  useEffect(() => {
-    const strValues = sessionStorage.getItem("valuesAliasColor");
-    if (strValues) {
-      const data = JSON.parse(strValues);
-      setValue(data);
-      return;
-    }
-    else {
-      // defaults
-      setValue({ alias: "Enter Alias", color: "#ffcc00" })
-      setValueMsg({ message: "Enter Message" })
-    }
-  }, [])
-
+  useEffect(() => sessionStorage.setItem("userConfig", JSON.stringify(userConfig)), [userConfig]);
 
   return (
     <div className="panel global-style">
       {/* <FontAwesomeIcon icon={faHome} /> */}
       <ColorPicker
-        defaultColor={value.color}
-      // onChange={() => {
-      //   setValue({ ...value, color: value.color })
-      // }}
+        defaultColor={defaultConfig.color }
+        onChange={(color) => {
+          setUserConfig({ ...userConfig, color });
+        }}
       />
       <TextField
         placeholder="Alias"
-        defaultValue={value.alias}
-        onChange={(nval) => {
-          setValue({ ...value, alias: nval })
-        }}
+        defaultValue={defaultConfig.alias}
+        onChange={(alias) => setUserConfig({ ...userConfig, alias })}
       />
       <TextField
         placeholder="Message"
         style={{ flexGrow: 2 }}
-        defaultValue={valueMsg.message}
-        onChange={(nval) => {
-          setValueMsg({ ...valueMsg, message: nval })
-        }}
+        onChange={(message) => setMsgPkg({ ...msgPkg, message })}
       />
-      <button onClick={() => {
+      {/* <button onClick={() => {
         sessionStorage.setItem("valuesAliasColor", JSON.stringify(value));
-      }}>Add</button>
+      }}>Add</button> */}
       <div />
     </div>
   );
