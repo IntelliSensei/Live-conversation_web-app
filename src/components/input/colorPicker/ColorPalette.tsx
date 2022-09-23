@@ -2,10 +2,12 @@ import React, { FC } from "react";
 import "../../css/ColorPicker.ColorPalette.css";
 
 interface IColorPalette {
-    onSelect: (color: string) => void
+  onSelect: (color: string) => void;
 }
 
-export const ColorPalette: FC<IColorPalette> = ({onSelect}: IColorPalette) => {
+export const ColorPalette: FC<IColorPalette> = ({
+  onSelect,
+}: IColorPalette) => {
   const colors = [
     "#000000",
     "#800000",
@@ -31,10 +33,7 @@ export const ColorPalette: FC<IColorPalette> = ({onSelect}: IColorPalette) => {
         return (
           <div
             key={ix}
-            onClick={() => {
-              onSelect(color)
-              console.log(color);
-            }}
+            onClick={() => onSelect(color)}
             style={{ backgroundColor: color }}
             className={"circle"}
           />
