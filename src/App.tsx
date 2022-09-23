@@ -14,6 +14,7 @@ export default function App() {
   // const [text1, setText1] = useState("");
   // const [text2, setText2] = useState("");
   const [values, setValues] = useState<IValues>({});
+  
   useEffect(() => {
     const strValues = sessionStorage.getItem("values");
     if(strValues){
