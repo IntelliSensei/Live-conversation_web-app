@@ -26,6 +26,10 @@ export default function App() {
       return;
     setRecievedMessage([lastMessage.data, ...recievedMessage])
   }, [lastMessage])
+
+  // var sock = new WebSocket("ws://localhost:8999");
+  // sock.onmessage = function(event) {  
+  // }
   
   return (
     <div>
