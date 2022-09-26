@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { useSessionStorage } from "../hooks";
 import "./css/Panel.css";
 import { ColorPicker } from "./input/colorPicker/ColorPicker";
 import { TextField } from "./input";
@@ -19,17 +20,16 @@ export interface IWSMessagePKG {
   message: string;
 }
 
-// {
-//   alias: "anonymise",
-//   color: "#008000",
-// };
 
 export default function Panel() {
-  const defaultConfig: IUserConfig = JSON.parse(sessionStorage.getItem("userConfig") ||  '{}')
-  console.log(defaultConfig)
-  const [userConfig, setUserConfig] = useState<IUserConfig>({
-    ...defaultConfig,
-  });
+
+  const defaultConfig: IUserConfig = {
+    alias: "anonymise",
+    color: "#008000",
+  };
+
+  const [userConfig, setUserConfig] = useSessionStorage<IUserConfig>("userSettings", defaultConfig);
+
   const [msgPkg, setMsgPkg] = useState<IWSMessagePKG>({
     ...defaultConfig,
     message: "",
@@ -38,13 +38,11 @@ export default function Panel() {
   useEffect(() => console.log({ msgPkg }), [msgPkg]);
   useEffect(() => setMsgPkg({ ...msgPkg, ...userConfig }), [userConfig]);
 
-  useEffect(() => sessionStorage.setItem("userConfig", JSON.stringify(userConfig)), [userConfig]);
-
   return (
     <div className="panel global-style">
       {/* <FontAwesomeIcon icon={faHome} /> */}
       <ColorPicker
-        defaultColor={defaultConfig.color }
+        defaultColor={defaultConfig.color}
         onChange={(color) => {
           setUserConfig({ ...userConfig, color });
         }}
