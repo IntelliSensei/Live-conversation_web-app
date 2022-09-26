@@ -4,7 +4,6 @@ import { DropDown, IOption, ColorPalette } from "./components/input";
 import Panel from "./components/Panel";
 import { useSessionStorage } from "./hooks";
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 interface IValues {
   one?: string;
@@ -13,9 +12,7 @@ interface IValues {
 
 export default function App() {
   const [values, setValues] = useLocalStorage<IValues>("myValues", {});
-  // const [message, setMessage] = useState("");
-  // const [recievedMessage, setRecievedMessage] = useState<string[]>([]);
-  // const { sendMessage, lastMessage, readyState } = useWebSocket("ws://localhost:8999");
+
 
   useEffect(() => {
     const strValues = sessionStorage.getItem("values");
@@ -27,15 +24,7 @@ export default function App() {
     setValues({ one: "missing", two: "missing" });
   }, []);
 
-  // useEffect(() => {
-  //   if(!lastMessage) 
-  //   return;
-  //   setRecievedMessage([lastMessage.data, ...recievedMessage])
-  // }, [lastMessage]);
-
-
-
-  return (
+   return (
     <div>
       <Panel />
     </div>
