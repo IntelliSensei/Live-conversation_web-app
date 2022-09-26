@@ -1,7 +1,6 @@
 .panel {
   display: flex;
   align-items: center;
-  outline: 1px solid red;
   position: absolute;
   width: 100vw;
   margin: 0;
