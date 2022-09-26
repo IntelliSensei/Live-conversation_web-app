@@ -48,7 +48,7 @@ export default function App() {
         }}
       />
 
-      <button onClick={() => sendMessage(message + " " + new Date().toISOString())}>Send Message</button>
+      <button onClick={() => sendMessage(message)}>Send Message</button>
       {lastMessage && <div>{lastMessage.data}</div>}
       <hr></hr>
         <div>
