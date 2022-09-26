@@ -2,10 +2,16 @@ import React, { FC, useState } from "react";
 import "../../css/ColorPicker.ColorPicker.css";
 import { ColorPalette } from "./ColorPalette";
 
-interface IColorPicker {}
+export interface IColorPicker {
+  defaultColor?: string;
+  onChange?: (color: string) => void;
+}
 
-export const ColorPicker: FC<IColorPicker> = ({}: IColorPicker) => {
-  const [selectColor, setSelectColor] = useState("#fff");
+export const ColorPicker: FC<IColorPicker> = ({
+  defaultColor,
+  onChange,
+}: IColorPicker) => {
+  const [selectColor, setSelectColor] = useState(defaultColor);
   const [showPalette, setShowPalette] = useState(false);
 
   return (
@@ -27,6 +33,7 @@ export const ColorPicker: FC<IColorPicker> = ({}: IColorPicker) => {
           <ColorPalette
             onSelect={(color) => {
               setSelectColor(color);
+              if (onChange) onChange(color)
               setShowPalette(false);
             }}
           />
