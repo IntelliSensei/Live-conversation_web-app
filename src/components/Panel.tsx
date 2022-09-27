@@ -62,14 +62,14 @@ export default function Panel() {
     <div className="panel global-style">
       {/* <FontAwesomeIcon icon={faHome} /> */}
       <ColorPicker
-        defaultColor={defaultConfig.color}
+        defaultColor={userConfig.color}
         onChange={(color) => {
           setUserConfig({ ...userConfig, color });
         }}
         />
       <TextField
         placeholder="Alias"
-        defaultValue={defaultConfig.alias}
+        defaultValue={userConfig.alias}
         onChange={(alias) => setUserConfig({ ...userConfig, alias })}
         />
       <TextField
