@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TextField } from "./components/input";
 import { DropDown, IOption, ColorPalette } from "./components/input";
+import { TextBubble } from "./components/output/TextBubble";
 import { Panel } from "./components/Panel";
 import { useSessionStorage } from "./hooks";
 import { useLocalStorage } from "./hooks/useLocalStorage";
@@ -25,6 +26,11 @@ export default function App() {
 
   return (
     <div>
+      <TextBubble 
+      alias="jesper"
+      color="red"
+      message="test"
+      />
       <Panel 
         // onChange={(nv) => console.log("onChange", nv)}
         onMessageChange={(nv) => console.log("onMessageChange", nv)}

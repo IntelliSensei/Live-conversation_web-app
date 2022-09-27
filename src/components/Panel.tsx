@@ -30,7 +30,7 @@ export const Panel: FC<IPanelProps> = ({
   onMessageChange,
 }: IPanelProps) => {
   const defaultConfig: IUserConfig = {
-    alias: "anonymise",
+    alias: "Jesper",
     color: "#008000",
   };
 
