@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TextField } from "./components/input";
 import { DropDown, IOption, ColorPalette } from "./components/input";
-import Panel from "./components/Panel";
+import { Panel } from "./components/Panel";
 import { useSessionStorage } from "./hooks";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
@@ -13,7 +13,6 @@ interface IValues {
 export default function App() {
   const [values, setValues] = useLocalStorage<IValues>("myValues", {});
 
-
   useEffect(() => {
     const strValues = sessionStorage.getItem("values");
     if (strValues) {
@@ -24,9 +23,12 @@ export default function App() {
     setValues({ one: "missing", two: "missing" });
   }, []);
 
-   return (
+  return (
     <div>
-      <Panel />
+      <Panel 
+        // onChange={(nv) => console.log("onChange", nv)}
+        onMessageChange={(nv) => console.log("onMessageChange", nv)}
+      />
     </div>
   );
 }

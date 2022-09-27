@@ -9,55 +9,48 @@ import {
   FontAwesomeIconProps,
 } from "@fortawesome/react-fontawesome";
 import "./css/GlobalStyles.css";
-import useWebSocket, { ReadyState } from 'react-use-websocket';
-
-
+import useWebSocket, { ReadyState } from "react-use-websocket";
 
 export interface IUserConfig {
   alias: string;
   color: string;
 }
 
-export interface IWSMessagePKG {
-  alias: string;
-  color: string;
+export interface IWSMessagePKG extends IUserConfig {
   message: string;
 }
 
+interface IPanelProps {
+  onChange?: (newValue: IWSMessagePKG) => void;
+  onMessageChange?: (newValue: IWSMessagePKG) => void;
+}
 
-export default function Panel() {
-  
+export const Panel: FC<IPanelProps> = ({
+  onChange,
+  onMessageChange,
+}: IPanelProps) => {
   const defaultConfig: IUserConfig = {
     alias: "anonymise",
     color: "#008000",
   };
-  
-  const [userConfig, setUserConfig] = useSessionStorage<IUserConfig>("userSettings", defaultConfig);
-  
-  const [msgPkg, setMsgPkg] = useState<IWSMessagePKG>({
-    ...defaultConfig,
-    message: "",
-  });
-  
-  useEffect(() => console.log({ msgPkg }), [msgPkg]);
-  useEffect(() => setMsgPkg({ ...msgPkg, ...userConfig }), [userConfig]);
-  
-  
-  
+
+  const [userConfig, setUserConfig] = useSessionStorage<IUserConfig>(
+    "userSettings",
+    defaultConfig
+  );
+
   const [message, setMessage] = useState("");
-  const [recievedMessage, setRecievedMessage] = useState<string[]>([])
-  const { sendMessage, lastMessage, readyState } = useWebSocket("ws://localhost:8999");
+
+  useEffect(() => onChange && onChange({ ...userConfig, message }), [
+    message,
+    userConfig,
+  ]);
   
-  useEffect(() => {
-    if (!lastMessage)
-      return;
-    setRecievedMessage([lastMessage.data, ...recievedMessage])
-  }, [lastMessage])
-  
-  
-  let socket = useWebSocket("ws://localhost:8999")
-  
-  
+  useEffect(
+    () => onMessageChange && onMessageChange({ ...userConfig, message }),
+    [message]
+  );
+
   return (
     <div className="panel global-style">
       {/* <FontAwesomeIcon icon={faHome} /> */}
@@ -66,18 +59,18 @@ export default function Panel() {
         onChange={(color) => {
           setUserConfig({ ...userConfig, color });
         }}
-        />
+      />
       <TextField
         placeholder="Alias"
         defaultValue={userConfig.alias}
         onChange={(alias) => setUserConfig({ ...userConfig, alias })}
-        />
+      />
       <TextField
         placeholder="Message"
         style={{ flexGrow: 2 }}
-        onChange={(message) => setMsgPkg({ ...msgPkg, message })}
+        onChange={(message) => setMessage(message)}
       />
       <div />
     </div>
   );
-}
+};
