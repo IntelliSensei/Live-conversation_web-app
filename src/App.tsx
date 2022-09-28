@@ -10,33 +10,27 @@ interface IValues {
 }
 
 export default function App() {
-  const [values, setValues] = useLocalStorage<IValues>("myValues", {});
-  useEffect(() => {
-    const strValues = sessionStorage.getItem("values");
-    if (strValues) {
-      const data = JSON.parse(strValues);
-      setValues(data);
-      return;
-    }
-    setValues({ one: "missing", two: "missing" });
-  }, []);
+  const socketUrl = "ws://localhost:8999";
 
-  // const socket = new WebSocket("ws://localhost:8999")
 
-  // socket.onmessage = (event) => {
-  //   console.log(JSON.parse(event.data))
-  // }
+  const { sendJsonMessage } = useWebSocket(socketUrl)
+
+
 
   return (
     <div>
-      <TextBubble
+      {/* <TextBubble
         alias={JSON.stringify(values.one)} // need real values. for example alias = socketResponse.alias
         color={JSON.stringify("red")}
         message={JSON.stringify(values.two)}
-      />
+      /> */}
       <Panel
         // onChange={(nv) => console.log("onChange", nv)}
-        onMessageChange={(nv) => console.log("onMessageChange", nv)}
+        onMessageChange={(nv) => {
+          const sendObject = {...nv, Atype: "CONVERSATION"}
+          console.log(sendObject)
+          sendJsonMessage(sendObject)
+        }}
       />
     </div>
   );
