@@ -3,13 +3,7 @@ import { useSessionStorage } from "../hooks";
 import "./css/Panel.css";
 import { ColorPicker } from "./input/colorPicker/ColorPicker";
 import { TextField } from "./input";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import {
-  FontAwesomeIcon,
-  FontAwesomeIconProps,
-} from "@fortawesome/react-fontawesome";
 import "./css/GlobalStyles.css";
-import useWebSocket, { ReadyState } from "react-use-websocket";
 
 export interface IUserConfig {
   alias: string;
@@ -30,7 +24,7 @@ export const Panel: FC<IPanelProps> = ({
   onMessageChange,
 }: IPanelProps) => {
   const defaultConfig: IUserConfig = {
-    alias: "Jesper",
+    alias: "Alias",
     color: "#008000",
   };
 
@@ -41,13 +35,19 @@ export const Panel: FC<IPanelProps> = ({
 
   const [message, setMessage] = useState("");
 
+  const socket = new WebSocket("ws://localhost:8999")
+
   useEffect(() => onChange && onChange({ ...userConfig, message }), [
     message,
     userConfig,
+
+    //test to send info to socket, shows info in backend service. 
+    socket.onmessage = (event) => {
+      socket.send(JSON.stringify({...userConfig, message}))      
+    }
   ]);
-  
-  useEffect(
-    () => onMessageChange && onMessageChange({ ...userConfig, message }),
+
+  useEffect(() => onMessageChange && onMessageChange({ ...userConfig, message }),
     [message]
   );
 
