@@ -35,16 +35,9 @@ export const Panel: FC<IPanelProps> = ({
 
   const [message, setMessage] = useState("");
 
-  const socket = new WebSocket("ws://localhost:8999")
-
   useEffect(() => onChange && onChange({ ...userConfig, message }), [
     message,
     userConfig,
-
-    //test to send info to socket, shows info in backend service. 
-    socket.onmessage = (event) => {
-      socket.send(JSON.stringify({...userConfig, message}))      
-    }
   ]);
 
   useEffect(() => onMessageChange && onMessageChange({ ...userConfig, message }),
@@ -53,7 +46,6 @@ export const Panel: FC<IPanelProps> = ({
 
   return (
     <div className="panel global-style">
-      {/* <FontAwesomeIcon icon={faHome} /> */}
       <ColorPicker
         defaultColor={userConfig.color}
         onChange={(color) => {
