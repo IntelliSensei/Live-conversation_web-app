@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: live-conversation-web-app-service
+spec:
+  type: ClusterIP
+  selector:
+    app: live-conversation-web-app-deployment
+  ports:
+  - name: live-conversation-web-app-service
+    port: 8080
+    targetPort: 8000
+    protocol: TCP
+
+
