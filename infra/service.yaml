@@ -4,7 +4,7 @@ metadata:
   name: live-conversation-web-app-service
 spec:
   selector:
-    app: live-conversation-web-app-deployment
+    app: live-conversation-web-app
   ports:
   - name: live-conversation-web-app-service
     port: 8000
