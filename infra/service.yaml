@@ -2,6 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: live-conversation-web-app-service
+  labels:
+    app.kubernetes.io/name: web-app-service
+    app.kubernetes.io/part-of: live-conversation
 spec:
   selector:
     app: live-conversation-web-app
