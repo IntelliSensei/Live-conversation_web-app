@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { IWSMessagePKG } from "../Panel"
 import "../css/TextBubble.css"
 
@@ -15,26 +15,33 @@ function getRandomNumber(min: any, max: any) {
 }
 
 function randomizeBubbles() {
-    var section = document.getElementsByTagName('section')
     var winWidth = window.innerWidth - 500;
     var winHeight = window.innerHeight - 200;
+    var randomTop = getRandomNumber(0, winHeight);
+    var randomLeft = getRandomNumber(0, winWidth);
 
-    for (var i = 0; i < section.length; i++) {
-
-        var thisSection = section[i];
-        var randomTop = getRandomNumber(0, winHeight);
-        var randomLeft = getRandomNumber(0, winWidth);
-
-        thisSection.style.top = randomTop + "px";
-        thisSection.style.left = randomLeft + "px";
-    }
+    return { top: randomTop + "px", left: randomLeft + "px" }
 }
 
 export const TextBubble: FC<ITextBubbleProps> = ({ alias, color, message }: ITextBubbleProps) => {
 
-    randomizeBubbles();
+    const positions = useMemo(() => randomizeBubbles(), [])
+    const [timeToLive, setTimeToLive] = useState(10)
 
-    return <section className="textBubble" style={{ backgroundColor: color }}>
+    useEffect(() => {
+        let ttl = 10;
+        console.log("set interval", alias);
+        const id = setInterval(() => {
+            console.log("test", alias, ttl)
+            ttl = ttl - 1;
+            setTimeToLive(ttl);
+        }, 1000);
+        return () => clearInterval(id)
+    }, [message])
+
+    if (timeToLive < 0)
+        return <div></div>;
+    return <section className="textBubble" style={{ backgroundColor: color, ...positions }}>
         <h3 className="bubble-alias">{alias}</h3>
         <p className="bubble-msg">
             {message}
