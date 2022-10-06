@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from "react";
 import { IWSMessagePKG } from "../Panel"
-import "../css/TextBubble.css";
+import "../css/TextBubble.css"
+
 
 interface ITextBubbleProps {
     alias: string;

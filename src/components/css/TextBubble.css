@@ -1,7 +1,20 @@
-.textBubble {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 20%;
+.textBubble{
+    display: flex;
+    flex-direction: column;
     border-radius: 5px;
-    overflow-wrap: break-word;
-    position: absolute;
+    border: 2px solid rgba(141, 133, 133, 0.079);
+    margin: 0.5rem;
+    transition: 2s;
+    width: 600px;
+    overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+h3{
+    padding: 0rem 1rem 0rem 1rem;
+}
+
+p{
+    padding: 0rem 1rem 0rem 1rem;
+    width: 300px;
 }
