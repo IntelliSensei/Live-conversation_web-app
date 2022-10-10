@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { TextField } from "./components/input";
+import React, { useEffect, useState } from "react";
 import { ITextBubbleInfo, TextBubble } from "./components/output/TextBubble";
 import { Panel } from "./components/Panel";
 import { useConversation } from "./hooks/useConversation";
@@ -12,13 +11,14 @@ export default function App() {
     "ws://localhost:8999"
   );
 
+
   useEffect(() => {
     for (const key in textBubbleInfo) {
       const cb = textBubbleInfo[key];
       console.log(key, cb());
     }
   }, [conversations]);
-
+ 
   return (
     <div>
       {/* <button onClick={() => setC(c + 1)}>add {c}</button> */}
