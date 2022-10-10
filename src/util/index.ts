@@ -1,0 +1,1 @@
+export const trimStart = (str: string, length: number) => str.slice(str.length > length ? str.length - length : 0) 

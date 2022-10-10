@@ -5,10 +5,11 @@
     margin: 0.5rem;
     transition: 200ms;
     width: 300px;
+    min-width: 300px;
     height: 150px;
-    overflow: auto;
+    overflow: hidden;
+    word-break: break-all;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    position: absolute;
 }
 
 h3{
@@ -16,6 +17,6 @@ h3{
 }
 
 p{
-    padding: 0rem 1rem 0rem 1rem;
-    /* width: 0px; */
+    padding: 0 1rem;
+    margin: 0;
 }

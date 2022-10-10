@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ITextBubbleInfo, TextBubble } from "./components/output/TextBubble";
 import { Panel } from "./components/Panel";
 import { useConversation } from "./hooks/useConversation";
+import "./components/css/App.css"  
 
 export default function App() {
   const [textBubbleInfo, setTextBubbleInfo] = useState<
@@ -15,14 +16,14 @@ export default function App() {
   useEffect(() => {
     for (const key in textBubbleInfo) {
       const cb = textBubbleInfo[key];
-      console.log(key, cb());
+      // console.log(key, cb());
     }
   }, [conversations]);
  
   return (
     <div>
       {/* <button onClick={() => setC(c + 1)}>add {c}</button> */}
-      <div className="test">
+      <div className="bubble-container">
         {Object.values(conversations).map((c) => (
           <TextBubble
             {...c}

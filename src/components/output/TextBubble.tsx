@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { trimStart } from "../../util";
 import "../css/TextBubble.css";
 
 export interface ITextBubbleInfo {
@@ -53,9 +54,7 @@ export const TextBubble: FC<ITextBubbleProps> = ({
 
   useEffect(() => {
     let ttl = 60;
-    console.log("set interval", alias);
     const id = setInterval(() => {
-      console.log("test", alias, ttl)
       ttl = ttl - 1;
       setTimeToLive(ttl);
     }, 1000);
@@ -69,7 +68,7 @@ export const TextBubble: FC<ITextBubbleProps> = ({
     style={{ backgroundColor: color, ...positions }}
     >
       <h3 className="bubble-alias">{alias}</h3>
-      <p className="bubble-msg">{message}</p>
+      <p className="bubble-msg">{trimStart(message, 120)}</p>
     </section>
   );
 };
