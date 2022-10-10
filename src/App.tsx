@@ -1,49 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { TextField } from "./components/input";
-import { DropDown, IOption, ColorPalette } from "./components/input";
-import Panel from "./components/Panel";
-import { useSessionStorage } from "./hooks";
-import { useLocalStorage } from "./hooks/useLocalStorage";
-
-interface IValues {
-  one?: string;
-  two?: string;
-}
+import { ITextBubbleInfo, TextBubble } from "./components/output/TextBubble";
+import { Panel } from "./components/Panel";
+import { useConversation } from "./hooks/useConversation";
+import "./components/css/App.css"  
 
 export default function App() {
-  const [values, setValues] = useLocalStorage<IValues>("myValues", {});
+  const [textBubbleInfo, setTextBubbleInfo] = useState<
+    Record<string, () => ITextBubbleInfo>
+  >({});
+  const { sendConversation, conversations } = useConversation(
+    "ws://localhost:8999"
+  );
+
 
   useEffect(() => {
-    const strValues = sessionStorage.getItem("values");
-    if (strValues) {
-      const data = JSON.parse(strValues);
-      setValues(data);
-      return;
+    for (const key in textBubbleInfo) {
+      const cb = textBubbleInfo[key];
+      // console.log(key, cb());
     }
-    setValues({ one: "missing", two: "missing" });
-  }, []);
-
+  }, [conversations]);
+ 
   return (
     <div>
-      <TextField
-        label="Textfield 1"
-        onChange={(nv) => {
-          setValues({ ...values, one: nv });
-        }}
-      />
-      <TextField
-        label="Textfield 2"
-        placeholder="12313"
-        onChange={(nv) => {
-          setValues({ ...values, two: nv });
-        }}
-      />
-      <button>Send</button>
-      <div>
-        <p>text 1: {values.one} </p>
-        <p>text 2: {values.two} </p>
+      {/* <button onClick={() => setC(c + 1)}>add {c}</button> */}
+      <div className="bubble-container">
+        {Object.values(conversations).map((c) => (
+          <TextBubble
+            {...c}
+            getInfo={(cb) =>
+              setTextBubbleInfo({ ...textBubbleInfo, [c.id]: cb })
+            }
+          />
+        ))}
       </div>
-      <Panel />
+      <Panel onMessageChange={sendConversation} />
     </div>
   );
 }

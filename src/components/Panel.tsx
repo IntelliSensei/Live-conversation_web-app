@@ -3,64 +3,66 @@ import { useSessionStorage } from "../hooks";
 import "./css/Panel.css";
 import { ColorPicker } from "./input/colorPicker/ColorPicker";
 import { TextField } from "./input";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import {
-  FontAwesomeIcon,
-  FontAwesomeIconProps,
-} from "@fortawesome/react-fontawesome";
 import "./css/GlobalStyles.css";
 
 export interface IUserConfig {
   alias: string;
   color: string;
 }
-export interface IWSMessagePKG {
-  alias: string;
-  color: string;
+
+export interface IWSMessagePKG extends IUserConfig {
   message: string;
 }
 
+interface IPanelProps {
+  onChange?: (newValue: IWSMessagePKG) => void;
+  onMessageChange?: (newValue: IWSMessagePKG) => void;
+}
 
-export default function Panel() {
-
+export const Panel: FC<IPanelProps> = ({
+  onChange,
+  onMessageChange,
+}: IPanelProps) => {
   const defaultConfig: IUserConfig = {
-    alias: "anonymise",
+    alias: "Alias",
     color: "#008000",
   };
 
-  const [userConfig, setUserConfig] = useSessionStorage<IUserConfig>("userSettings", defaultConfig);
+  const [userConfig, setUserConfig] = useSessionStorage<IUserConfig>(
+    "userSettings",
+    defaultConfig
+  );
 
-  const [msgPkg, setMsgPkg] = useState<IWSMessagePKG>({
-    ...defaultConfig,
-    message: "",
-  });
+  const [message, setMessage] = useState("");
 
-  useEffect(() => console.log({ msgPkg }), [msgPkg]);
-  useEffect(() => setMsgPkg({ ...msgPkg, ...userConfig }), [userConfig]);
+  useEffect(() => onChange && onChange({ ...userConfig, message }), [
+    message,
+    userConfig,
+  ]);
+
+  useEffect(() => onMessageChange && onMessageChange({ ...userConfig, message }),
+    [message]
+  );
 
   return (
     <div className="panel global-style">
-      {/* <FontAwesomeIcon icon={faHome} /> */}
       <ColorPicker
-        defaultColor={defaultConfig.color}
+        defaultColor={userConfig.color}
         onChange={(color) => {
           setUserConfig({ ...userConfig, color });
         }}
       />
       <TextField
         placeholder="Alias"
-        defaultValue={defaultConfig.alias}
+        defaultValue={userConfig.alias}
         onChange={(alias) => setUserConfig({ ...userConfig, alias })}
       />
       <TextField
         placeholder="Message"
         style={{ flexGrow: 2 }}
-        onChange={(message) => setMsgPkg({ ...msgPkg, message })}
+        onChange={(message) => setMessage(message)}
       />
-      {/* <button onClick={() => {
-        sessionStorage.setItem("valuesAliasColor", JSON.stringify(value));
-      }}>Add</button> */}
       <div />
     </div>
   );
-}
+};

@@ -1,7 +1,4 @@
-import { FontawesomeObject, Icon } from "@fortawesome/fontawesome-svg-core";
-import React, { CSSProperties, FC,useEffect, useState } from "react";
-import { faBoxOpen, faHome } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
+import React, { CSSProperties, FC } from "react";
 import "../css/GlobalStyles.css"
 
 
