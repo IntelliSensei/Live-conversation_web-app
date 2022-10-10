@@ -48,6 +48,13 @@ export const useConversation = (socketUrl: string) => {
     sendJsonMessage({ type: "CONVERSATION", ...data });
   }, []);
 
+  const removeConversations = useCallback((id: string) => {
+    if (!(id in conversations)) return;
+    delete conversations[id];
+    setConversations(conversations);
+  }, []);
+
+
   const messageGroups = useMemo(() => {
     return {
       initiate: initiateArray,
@@ -55,5 +62,5 @@ export const useConversation = (socketUrl: string) => {
     };
   }, [initiateArray, conversationArray]);
 
-  return { sendConversation, lastJsonMessage, messageGroups, conversations };
+  return { sendConversation, lastJsonMessage, messageGroups, conversations, removeConversations };
 };
