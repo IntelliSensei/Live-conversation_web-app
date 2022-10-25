@@ -10,4 +10,4 @@ resources:
 images:
   - name: crdevwe001.azurecr.io/live-conversation_web-app
     # newName: local/web-app
-    newTag: IMAGE_TAG
+    newTag: $IMAGE_TAG
