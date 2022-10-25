@@ -9,5 +9,5 @@ resources:
 # namespace: dev
 images:
   - name: crdevwe001.azurecr.io/live-conversation_web-app
-    newName: local/web-app
-    newTag: v1.0
+    # newName: local/web-app
+    newTag: IMAGE_TAG
