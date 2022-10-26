@@ -12,3 +12,5 @@ images:
   - name: crdevwe001.azurecr.io/live-conversation/web-app
     # Add tag to ALL images - tag-value defined in pipeline
     newTag: $IMAGE_TAG
+spec:
+  replicas: 2
