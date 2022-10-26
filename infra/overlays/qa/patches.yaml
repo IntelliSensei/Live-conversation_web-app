@@ -9,7 +9,7 @@ spec:
  selector:
     matchLabels:
       app: live-conversation-web-app
- replicas: 1
+ replicas: 2
  template:
    spec:
      containers:
