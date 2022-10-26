@@ -22,4 +22,5 @@ metadata:
 spec:
   rules:
   - host: live-dev.labmojodoo.com
+  
 ---
