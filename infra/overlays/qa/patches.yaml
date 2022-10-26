@@ -6,6 +6,10 @@ metadata:
     app.kubernetes.io/name: web-app-deployment
     app.kubernetes.io/part-of: live-conversation
 spec:
+ selector:
+    matchLabels:
+      app: live-conversation-web-app
+ replicas: 1
  template:
    spec:
      containers:
