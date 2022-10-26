@@ -1,7 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources:
- - ../../base
 namespace: dev
+# Dev-kustomization will build upon the base-kustomization
+resources:
+  - ../../base
+# Any changes to the base-files (depl, ingress, srv) will be done from the Dev-patches-file
 patchesStrategicMerge:
   - "patches.yaml"
