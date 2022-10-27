@@ -1,4 +1,4 @@
-## OFFICIAL TEMPLATE FOR DEPLOYMENT ON-CLOUD
+## MAIN TEMPLATE FOR DEPLOYMENT ON-CLOUD
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
