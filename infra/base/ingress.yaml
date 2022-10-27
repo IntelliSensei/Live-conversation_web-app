@@ -3,8 +3,7 @@ kind: Ingress
 metadata:
   name: live-conversation-web-app-ingress
   labels:
-    app.kubernetes.io/name: web-app-ingress
-    app.kubernetes.io/part-of: live-conversation
+    app.kubernetes.io/name: live-conversation-web-app-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/use-regex: "true"
