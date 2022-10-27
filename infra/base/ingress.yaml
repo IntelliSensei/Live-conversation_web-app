@@ -2,8 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: live-conversation-web-app-ingress
-  labels:
-    app.kubernetes.io/name: live-conversation-web-app-ingress
+  # labels:
+  #   app.kubernetes.io/name: live-conversation-web-app-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/use-regex: "true"
