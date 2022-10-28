@@ -3,13 +3,12 @@ kind: Deployment
 metadata:
   name: live-conversation-web-app-deployment
   labels:
-    app.kubernetes.io/name: web-app-deployment
-    app.kubernetes.io/part-of: live-conversation
+    app.kubernetes.io/name: live-conversation-web-app-deployment
 spec:
  selector:
     matchLabels:
       app: live-conversation-web-app
- replicas: 2
+ replicas: 1
  template:
    spec:
      containers:
