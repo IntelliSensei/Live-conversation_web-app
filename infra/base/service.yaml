@@ -9,7 +9,8 @@ spec:
   ports:
   - name: live-conversation-web-app-service 
   # - name: live-conversation-web-app 
-    # port: 8000
-    port: 80
-    targetPort: 80
+    port: 8000
+    # port: 80
+    # targetPort: 80
+    targetPort: 8000
     protocol: TCP
