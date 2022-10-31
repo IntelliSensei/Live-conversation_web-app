@@ -8,10 +8,14 @@ resources:
 patchesStrategicMerge:
   - "patches.yaml"
 
+# patch the nginx/ingress directly in Kust-file (as per below), not in the dev-patches-file ...
+# ... the dev-patches-file (ingress-object) overrode the base-ingress-file completely, ...
+# ... i.e. causing omission of the http-section (spec > rule > host > http ...)  
 patches:
   - target:
       kind: Ingress
       name: live-conversation-web-app
+    # patch-operation (find and replace ONLY specific properties/values):  
     patch: |-
       - op: replace
         path: /spec/rules/0/host
