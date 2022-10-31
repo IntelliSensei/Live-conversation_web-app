@@ -6,3 +6,11 @@ resources:
 patchesStrategicMerge:
   - "patches.yaml"
 
+patches:
+  - target:
+      kind: Ingress
+      name: live-conversation-web-app
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: live-qa.labmojodoo.com

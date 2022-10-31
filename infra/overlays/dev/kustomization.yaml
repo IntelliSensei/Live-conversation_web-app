@@ -7,3 +7,12 @@ resources:
 # Any changes to the base-files (depl, ingress, srv) will be done from the Dev-patches-file
 patchesStrategicMerge:
   - "patches.yaml"
+
+patches:
+  - target:
+      kind: Ingress
+      name: live-conversation-web-app
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: live-dev.labmojodoo.com

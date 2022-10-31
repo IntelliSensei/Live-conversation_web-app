@@ -18,14 +18,3 @@ spec:
            - name: myVar
              value: myVarValue
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  # name: live-conversation-web-app-ingress
-  name: live-conversation-web-app
-spec:
-  rules:
-  - host: live-dev.labmojodoo.com
-
----
