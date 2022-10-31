@@ -1,3 +1,5 @@
+## MAIN TEMPLATE FOR DEPLOYMENT ON-CLOUD
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -9,5 +11,5 @@ resources:
 images:
   - name: crdevwe001.azurecr.io/live-conversation/web-app
     # Add tag to ALL images - tag-value defined in pipeline
-    # newTag: $IMAGE_TAG
-    newTag: testing
+    newTag: $IMAGE_TAG
+    # newTag: testing
