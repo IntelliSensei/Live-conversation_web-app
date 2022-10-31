@@ -3,8 +3,9 @@ kind: Deployment
 metadata:
   # name: live-conversation-web-app-deployment
   name: live-conversation-web-app
-  # labels:
-  #   app.kubernetes.io/name: live-conversation-web-app-deployment
+  labels:
+    # app.kubernetes.io/name: live-conversation-web-app-deployment
+    app.kubernetes.io/name: live-conversation-web-app
 spec:
   replicas: 1
   selector:
