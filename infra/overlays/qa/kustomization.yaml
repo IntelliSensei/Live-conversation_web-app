@@ -9,7 +9,7 @@ patchesStrategicMerge:
 patches:
   - target:
       kind: Ingress
-      name: live-conversation-web-app
+      name: live-conversation-web-app-ingress
     patch: |-
       - op: replace
         path: /spec/rules/0/host

@@ -14,7 +14,7 @@ patchesStrategicMerge:
 patches:
   - target:
       kind: Ingress
-      name: live-conversation-web-app
+      name: live-conversation-web-app-ingress
     # patch-operation (find and replace ONLY specific properties/values):  
     patch: |-
       - op: replace
