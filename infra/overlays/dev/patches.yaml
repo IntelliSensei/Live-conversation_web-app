@@ -15,5 +15,15 @@ spec:
          env: 
            - name: myVar
              value: myVarValue
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: live-conversation-web-app-ingress
+spec: 
+  tls:
+    - hosts:
+        - live-dev.labmojodoo.com
+      secretName: tls-live-dev  
 
 

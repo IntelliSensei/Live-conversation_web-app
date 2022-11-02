@@ -9,8 +9,8 @@ patchesStrategicMerge:
   - "patches.yaml"
 
 # patch the nginx/ingress directly in Kust-file (as per below), not in the dev-patches-file ...
-# ... the dev-patches-file (ingress-object) overrode the base-ingress-file completely, ...
-# ... i.e. causing omission of the http-section (spec > rule > host > http ...)  
+# ... the dev-patches-file (ingress-object) overrode parts of the base-ingress-file, ...
+# ... i.e. it omitted the http-section (spec > rule > host > http ...) - linked to the host-name being updated
 patches:
   - target:
       kind: Ingress

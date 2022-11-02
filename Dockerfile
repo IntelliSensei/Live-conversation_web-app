@@ -16,9 +16,9 @@ COPY . .
 # setup production build of the app (node modules)
 RUN npm build
 
-ENV PORT=80
+ENV PORT=3000
 
-EXPOSE 80
+EXPOSE 3000
 
 # start app
 CMD ["npm", "start"]

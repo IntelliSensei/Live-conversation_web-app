@@ -11,4 +11,4 @@ resources:
 images:
   - name: crdevwe001.azurecr.io/live-conversation/web-app
     # Add tag to ALL images - tag-value defined in pipeline
-    newTag: 'test'
+    newTag: 3925e025d3a8b8e82f9da12adeb873f78c252fea
