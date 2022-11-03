@@ -19,7 +19,7 @@ spec:
         image: crdevwe001.azurecr.io/live-conversation/web-app
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "256Mi"
+            cpu: "200m"
         ports:
         - containerPort: 3000
