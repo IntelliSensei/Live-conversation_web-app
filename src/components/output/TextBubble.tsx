@@ -44,6 +44,7 @@ export const TextBubble: FC<ITextBubbleProps> = ({
     return {
       timeToLive,
       top: Number(positions.top),
+      
       left: Number(positions.left),
       height: 300,
       width: 150,
