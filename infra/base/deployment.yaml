@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: live-conversation-web-app-deployment
+  labels:
+    app.kubernetes.io/name: live-conversation-web-app-deployment
 spec:
   replicas: 1
   selector:
@@ -14,10 +16,10 @@ spec:
     spec:
       containers:
       - name: live-conversation-web-app
-        image: key77/live-conversation_web-app
+        image: crdevwe001.azurecr.io/live-conversation/web-app
         resources:
           limits:
-            memory: "1024Mi"
+            memory: "512Mi"
             cpu: "500m"
         ports:
-        - containerPort: 8000
+        - containerPort: 3000
