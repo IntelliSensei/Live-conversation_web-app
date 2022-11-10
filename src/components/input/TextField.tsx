@@ -1,7 +1,6 @@
 import React, { CSSProperties, FC } from "react";
 import "../css/GlobalStyles.css"
 
-
 export interface ITextFieldProps {
   label?: string;
   placeholder?: string;
