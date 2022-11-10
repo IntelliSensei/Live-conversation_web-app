@@ -3,8 +3,8 @@ import { ITextBubbleInfo, TextBubble } from "./components/output/TextBubble";
 import { Panel } from "./components/Panel";
 import { useConversation } from "./hooks/useConversation";
 import "./components/css/App.css"
-import { LoginField } from "./components/login_signup/Login";
-import { SignUpField } from "./components/login_signup/Signup";
+import { LoginField } from "./components/login/Login";
+import { SignUpField } from "./components/signup/Signup";
 
 export default function App() {
   const [textBubbleInfo, setTextBubbleInfo] = useState<

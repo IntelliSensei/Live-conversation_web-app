@@ -7,9 +7,6 @@ export interface ISignUpProps {
 }
 
 export const SignUpField: FC<ISignUpProps> = ({
-  alias,
-  email,
-  password
 }: ISignUpProps) => {
 
   return (
@@ -18,3 +15,9 @@ export const SignUpField: FC<ISignUpProps> = ({
     </div>
   )
 }
+
+// export const test = {
+//   hello: "hello"
+// }
+
+// export default test
