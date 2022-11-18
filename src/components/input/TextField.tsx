@@ -35,6 +35,7 @@ export const TextField: FC<ITextFieldProps> = ({
         type={type}
         className='global-style'
         defaultValue={defaultValue}
+        autoComplete="off"
       />
     </div>
   );

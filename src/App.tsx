@@ -54,11 +54,11 @@ export default function App() {
         {/* <ListAllUsers /> */}
         <div className="top-bar">
           <LoginField />
-          <SignUpField
+          {/* <SignUpField
             alias="JEsper"
             password="asdasd"
             email="asdasd@mail.com"
-          />
+          /> */}
         </div>
       </div>
     </ApolloProvider>
