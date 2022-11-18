@@ -1,3 +1,4 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client"
 import React, { useEffect, useState } from "react";
 import { ITextBubbleInfo, TextBubble } from "./components/output/TextBubble";
 import { Panel } from "./components/Panel";
@@ -5,6 +6,7 @@ import { useConversation } from "./hooks/useConversation";
 import "./components/css/App.css"
 import { LoginField } from "./components/login_signup/Login";
 import { SignUpField } from "./components/login_signup/Signup";
+import { ListAllUsers } from "./components/listAllUsers";
 
 export default function App() {
   const [textBubbleInfo, setTextBubbleInfo] = useState<
@@ -14,6 +16,11 @@ export default function App() {
     "ws://localhost:8999"
   );
 
+
+  const client = new ApolloClient({
+    uri: 'http://localhost:4000/',
+    cache: new InMemoryCache(),
+  });
 
   useEffect(() => {
     if (Object.values(conversations).length < 1) return;
@@ -30,29 +37,30 @@ export default function App() {
   }, [conversations]);
 
   return (
-    <div>
-      <div className="bubble-container">
-        {Object.values(conversations).map((c) => (
-          <TextBubble
-            {...c}
-            key={c.id}
-            getInfo={(cb) =>
-              setTextBubbleInfo({ ...textBubbleInfo, [c.id]: cb })
-            }
+    <ApolloProvider client={client}>
+      <div>
+        <div className="bubble-container">
+          {Object.values(conversations).map((c) => (
+            <TextBubble
+              {...c}
+              key={c.id}
+              getInfo={(cb) =>
+                setTextBubbleInfo({ ...textBubbleInfo, [c.id]: cb })
+              }
+            />
+          ))}
+        </div>
+        <Panel onMessageChange={sendConversation} />
+        {/* <ListAllUsers /> */}
+        <div className="top-bar">
+          <LoginField />
+          <SignUpField
+            alias="JEsper"
+            password="asdasd"
+            email="asdasd@mail.com"
           />
-        ))}
+        </div>
       </div>
-      <Panel onMessageChange={sendConversation} />
-      <div className="top-bar">
-        <LoginField />
-        <SignUpField
-          alias="JEsper"
-          password="asdasd"
-          email="asdasd@mail.com"
-        />
-      </div>
-
-
-    </div>
+    </ApolloProvider>
   );
 }

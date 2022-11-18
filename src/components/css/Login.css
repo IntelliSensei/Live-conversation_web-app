@@ -1,0 +1,14 @@
+.login-field, .login-field input {
+    margin-right: 0.5rem;
+}
+
+.login-field input {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
