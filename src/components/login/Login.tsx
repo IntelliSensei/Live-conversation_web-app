@@ -80,7 +80,6 @@ const [token, setToken] = useSessionStorage("token", "");
         {decodedToken.email}
       </div>
     )
-
   }
 
   return (
@@ -89,22 +88,9 @@ const [token, setToken] = useSessionStorage("token", "");
 
       </div>
       <div className="login-field">
-        {/* <TextField label='email' onChange={(nv) => setEmailValue(nv)} /> */}
-        <input
-          type="text"
-          id='email'
-          value={emailValue}
-          onChange={(e) => setEmailValue(e.target.value)}
-          placeholder="Email..."
-        />
-        <input
-          type="password"
-          id='password'
-          value={passwordValue}
-          onChange={(e) => setPasswordValue(e.target.value)}
-          placeholder="Password..." />
+        <TextField label='email' placeholder='Email...' onChange={(nv) => setEmailValue(nv)} />
+        <TextField type='password' label='password' placeholder='Password...' onChange={(nv) => setPasswordValue(nv)}/> {/* need to hide pw here */}
         <button onClick={() => {
-
           loginUser({
             variables: {
               loginInput: {
