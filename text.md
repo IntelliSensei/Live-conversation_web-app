@@ -10,7 +10,7 @@ We want to give the users the ability to register themselves, sign in and use th
 - [x] Create webcomponent that allows user to log in
 - [x] Create authentication service
 - [x] Create endpoint for login
-- [ ] Store user token on client side
+- [x] Store user token on client side
 
 ### As a user I want to be able to sign up
 - [ ] Create webcomponent that allows user to sign up
