@@ -61,7 +61,7 @@ export const LoginField: FC<ILoginProps> = ({
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
 
-  const [sidePanelOpen, setSidePanelOpen] = useState(true);
+  const [sidePanelOpen, setSidePanelOpen] = useState(false);
 
   if (token.length > 1) {
     const decodedToken = jwt_decode(token) as any;

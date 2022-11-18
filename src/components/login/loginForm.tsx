@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { TextField } from "../input";
 import "../css/loginForm.css";
+import { PasswordField } from "../input/PasswordField";
 
 interface ILoginFormProps {
   onSignUpClick: () => void;
@@ -19,11 +20,13 @@ export const LoginForm: FC<ILoginFormProps> = ({
         ev.preventDefault();
         onSubmit();
       }}
+      autoComplete="off"
+
     >
-      <div className="login-form">
+      <div className="login-form" >
         <h2>Login</h2>
         <TextField placeholder="username" />
-        <TextField placeholder="password" />
+        <PasswordField placeholder="password" />
         <button type="submit">Log in</button>
         <button type="button" onClick={() => onSignUpClick()}>
           Sign up
