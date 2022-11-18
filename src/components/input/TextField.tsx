@@ -6,8 +6,9 @@ export interface ITextFieldProps {
   placeholder?: string;
   onChange?: (newValue: string) => void;
   style?: CSSProperties;
-  defaultValue?: string
+  defaultValue?: string;
   // icons?: Icon;
+  type?: string;
 }
 
 export const TextField: FC<ITextFieldProps> = ({
@@ -15,8 +16,9 @@ export const TextField: FC<ITextFieldProps> = ({
   placeholder,
   onChange,
   style,
-  defaultValue
+  defaultValue,
   // icons
+  type
 
 }: ITextFieldProps) => {
 
@@ -30,6 +32,7 @@ export const TextField: FC<ITextFieldProps> = ({
           if (onChange) onChange(newVal);
         }}  
         placeholder={placeholder}
+        type={type}
         className='global-style'
         defaultValue={defaultValue}
       />
