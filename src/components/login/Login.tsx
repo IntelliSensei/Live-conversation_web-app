@@ -1,7 +1,9 @@
 import { gql, useMutation } from '@apollo/client'
 import React, { FC, useState } from 'react'
+import { useLocalStorage, useSessionStorage } from '../../hooks';
 import "../css/Login.css"
-
+import { TextField } from '../input';
+import jwt_decode from "jwt-decode"
 
 
 export interface ILoginProps {
@@ -40,6 +42,10 @@ export const LoginField: FC<ILoginProps> = ({
   }
 `)
 
+const [token, setToken] = useSessionStorage("token", "");
+
+
+
 
 
   const LoginState = () => {
@@ -63,54 +69,56 @@ export const LoginField: FC<ILoginProps> = ({
 
   const [emailValue, setEmailValue] = useState("")
   const [passwordValue, setPasswordValue] = useState("")
-  // const [token, setToken] = useState("")
 
+  
+  
+  if(token.length > 1) {
+    const decodedToken = jwt_decode(token) as any
+    console.log(decodedToken);
+    return (
+      <div>
+        {decodedToken.email}
+      </div>
+    )
+
+  }
 
   return (
-    <div className="login-field">
-      {/* {data?.loginUser.message ? - need to figure out what this should be for the
-        <> */}
+    <div>
+      <div className="logged-in-user">
 
-          <input
-            type="text"
-            id='email'
-            value={emailValue}
-            onChange={(e) => setEmailValue(e.target.value)}
-            placeholder="Email..."
-          />
-          <input
-            type="password"
-            id='password'
-            value={passwordValue}
-            onChange={(e) => setPasswordValue(e.target.value)}
-            placeholder="Password..." />
-          <button onClick={() => {
-            console.log("meh");
+      </div>
+      <div className="login-field">
+        {/* <TextField label='email' onChange={(nv) => setEmailValue(nv)} /> */}
+        <input
+          type="text"
+          id='email'
+          value={emailValue}
+          onChange={(e) => setEmailValue(e.target.value)}
+          placeholder="Email..."
+        />
+        <input
+          type="password"
+          id='password'
+          value={passwordValue}
+          onChange={(e) => setPasswordValue(e.target.value)}
+          placeholder="Password..." />
+        <button onClick={() => {
 
-            loginUser({
-              variables: {
-                loginInput: {
-                  email: emailValue,
-                  password: passwordValue
-                }
+          loginUser({
+            variables: {
+              loginInput: {
+                email: emailValue,
+                password: passwordValue
               }
-            }).then((data) => sessionStorage.setItem("token", JSON.stringify(data.data?.loginUser.token))) // should this be set after instead?
-              // (data) => console.log(data)
-              // sessionStorage.setItem("token", JSON.stringify(data.loginUser.token)
-              // sessionStorage.setItem("token", JSON.stringify(data.data?.loginUser.token)
-            console.log(data?.loginUser.token);
-            console.log(sessionStorage);
-          }
-          }>Log In</button>
-          {LoginState()}
-        {/* </>
-        : */}
-        <>
-         
-        </>
-      {/* } */}
-
-
+            }
+          }).then((data) =>  {
+            setToken(data.data?.loginUser.token || "")
+          }) 
+        }
+        }>Log In</button>
+        {LoginState()}
+      </div>
     </div>
   )
 }
