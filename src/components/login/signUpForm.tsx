@@ -3,13 +3,20 @@ import { TextField } from "../input";
 import "../css/signUpFrom.css"
 import { PasswordField } from "../input/PasswordField";
 
-export interface ISignUpFromProps {
+export interface ISignUpFormProps {
   onBackClick: () => void;
+  email?: string;
+  alias?: string;
+  color?: string;
+  password?: string;
+  confirmPassword?: boolean;
 }
 
-export const SignUpFrom: FC<ISignUpFromProps> = ({
+
+
+export const SignUpFrom: FC<ISignUpFormProps> = ({
   onBackClick,
-}: ISignUpFromProps) => {
+}: ISignUpFormProps) => {
   const onSubmit = () => {
     console.log("submit");
   };
@@ -24,11 +31,11 @@ export const SignUpFrom: FC<ISignUpFromProps> = ({
     >
       <div className="sign-up-from">
         <h2>Sign up</h2>
-        <TextField placeholder="username" />
+        <TextField placeholder="email" />
         <TextField placeholder="alias" />
         <TextField placeholder="color" />
         <PasswordField placeholder="password" onChange={(nv) => console.log(nv)}/>
-        <PasswordField placeholder="confirm" />
+        <PasswordField placeholder="confirm password" />
 
         <button type="submit">Sign up</button>
         <button type="button" onClick={() => onBackClick()}>
