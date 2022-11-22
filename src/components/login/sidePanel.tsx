@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import "../css/Login.css";
-import { CloseIcon } from "../svgs";
+import { CloseIcon, UserIcon } from "../svgs";
 import { LoginForm } from "./loginForm";
-import { SignUpFrom } from "./signUpFrom";
+import { SignUpForm } from "./signUpForm";
 
 interface ISidePanelProps {
   isOpen: boolean;
@@ -24,7 +24,7 @@ export const SidePanel: FC<ISidePanelProps> = ({
       </div>
       <div className="content">
         {signUpMode ? (
-          <SignUpFrom onBackClick={() => setSignUpMode(false)} />
+          <SignUpForm onBackClick={() => setSignUpMode(false)} />
         ) : (
           <LoginForm onSignUpClick={() => setSignUpMode(true)} />
         )}

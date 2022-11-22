@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { TextField } from "../input";
-import "../css/signUpFrom.css"
+import "../css/signUpForm.css"
 import { PasswordField } from "../input/PasswordField";
 
 export interface ISignUpFormProps {
@@ -14,7 +14,7 @@ export interface ISignUpFormProps {
 
 
 
-export const SignUpFrom: FC<ISignUpFormProps> = ({
+export const SignUpForm: FC<ISignUpFormProps> = ({
   onBackClick,
 }: ISignUpFormProps) => {
   const onSubmit = () => {
