@@ -72,7 +72,17 @@ export const LoginForm: FC<ILoginFormProps> = ({
     <form
       onSubmit={(ev) => {
         ev.preventDefault();
-        loginUser();
+        loginUser({
+          variables: {
+            loginInput: {
+              email: emailValue,
+              password: passwordValue,
+            },
+          },
+        }).then((data) => {
+          setToken(data.data?.loginUser.token || "");
+        });
+
       }}
       autoComplete="off"
     >
@@ -81,22 +91,7 @@ export const LoginForm: FC<ILoginFormProps> = ({
         <TextField placeholder="email" onChange={(nv) => setEmailValue(nv)} />
         <PasswordField placeholder="password" onChange={(nv) => setPasswordValue(nv)} />
 
-        <button type="submit"
-          onClick={() => {
-            loginUser({
-              variables: {
-                loginInput: {
-                  email: emailValue,
-                  password: passwordValue,
-                },
-              },
-            }).then((data) => {
-              setToken(data.data?.loginUser.token || "");
-            });
-          }}
-
-        // {LoginState()}
-        >Log in</button>
+        <button type="submit">Log in</button>
         <button type="button" onClick={() => onSignUpClick()}>
           Sign up
         </button>
