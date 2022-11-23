@@ -20,7 +20,6 @@ export const SidePanel: FC<ISidePanelProps> = ({
         {/* <div onClick={() => onDismiss()}>X</div> */}
         <div className="close" onClick={() => onDismiss()}>
           <CloseIcon />
-          <UserIcon />
         </div>
       </div>
       <div className="content">
