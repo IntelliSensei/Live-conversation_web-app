@@ -12,7 +12,6 @@ export interface ITokenPayload {
     exp: number;
 }
 
-
 export const useLoginService = () => {
 
     const [token, setToken] = useSessionStorage("token", "");
@@ -68,7 +67,6 @@ export const useLoginService = () => {
         const id = setInterval(getAuthorized, 10000)
         return () => clearInterval(id);
     }, [payload, setIsAuthorized]);
-
 
     return { token, payload, isAuthorized, login, logout, loading, error };
 }
