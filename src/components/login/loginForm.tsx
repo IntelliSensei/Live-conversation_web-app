@@ -5,6 +5,7 @@ import { PasswordField } from "../input/PasswordField";
 import { useSessionStorage } from "../../hooks";
 import { useMutation, gql } from "@apollo/client";
 import jwt_decode from "jwt-decode"
+import { SignUpForm } from "./signUpForm";
 
 
 interface ILoginFormProps {
@@ -40,32 +41,25 @@ export const LoginForm: FC<ILoginFormProps> = ({
     }
   `);
 
-const LoginState = () => {
-  if (loading) {
-    return <div>loading</div>;
-  }
+  const LoginState = () => {
+    if (loading) {
+      return <div>loading</div>;
+    }
 
-  if (error) {
-    return <div>{error.message}</div>;
-  }
+    if (error) {
+      return <div>{error.message}</div>;
+    }
 
-  if (!data) {
-    return <div></div>;
-  }
+    if (!data) {
+      return <div></div>;
+    }
 
-  return <div>{data.loginUser.message}</div>;
-};
+    return <div>{data.loginUser.message}</div>;
+  };
 
-  // export const LoginForm: FC<ILoginFormProps> = ({
-  //   onSignUpClick,
-  // }: ILoginFormProps) => {
-  //   const onSubmit = () => {
-  //     console.log("submit");
-  //   };
 
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-
   const [token, setToken] = useSessionStorage("token", "");
 
   if (token.length > 1) {
@@ -86,6 +80,7 @@ const LoginState = () => {
         <h2>Login</h2>
         <TextField placeholder="email" onChange={(nv) => setEmailValue(nv)} />
         <PasswordField placeholder="password" onChange={(nv) => setPasswordValue(nv)} />
+
         <button type="submit"
           onClick={() => {
             loginUser({
@@ -99,12 +94,14 @@ const LoginState = () => {
               setToken(data.data?.loginUser.token || "");
             });
           }}
-          // {LoginState()}
+
+        // {LoginState()}
         >Log in</button>
         <button type="button" onClick={() => onSignUpClick()}>
           Sign up
         </button>
       </div>
     </form>
+
   );
 };

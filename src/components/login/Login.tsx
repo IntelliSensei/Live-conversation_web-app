@@ -4,7 +4,7 @@ import { LoginIcon } from "../svgs";
 import { SidePanel } from "./sidePanel";
 
 export const LoginField = () => {
-
+  
   const [sidePanelOpen, setSidePanelOpen] = useState(false);
 
   return (
