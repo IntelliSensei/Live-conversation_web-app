@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import "../css/Login.css";
-import { CloseIcon, UserIcon } from "../svgs";
+import { CloseIcon } from "../svgs";
 import { LoginForm } from "./loginForm";
 import { SignUpForm } from "./signUpForm";
 
