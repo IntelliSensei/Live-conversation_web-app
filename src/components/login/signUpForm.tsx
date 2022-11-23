@@ -67,7 +67,7 @@ export const SignUpForm: FC<ISignUpFormProps> = ({
           console.log(key, value, value.length);
 
           if (value.length <= 0) {
-            setErrMessage(`${key} is requied`)
+            setErrMessage(`${key} is required`)
             return;
           }
         }
@@ -75,7 +75,7 @@ export const SignUpForm: FC<ISignUpFormProps> = ({
         // password complexity
         // password missmatch 
         if (confirmValue.localeCompare(registerInput.password) !== 0) {
-          setErrMessage(`the password need to match`)
+          setErrMessage(`The passwords does not match`)
           return;
         }
 
