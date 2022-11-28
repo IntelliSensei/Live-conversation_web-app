@@ -75,10 +75,6 @@ export const TextBubble: FC<ITextBubbleProps> = ({
       <h3 className="bubble-alias">{alias}
         {verified && <VerifiedIcon />}
       </h3>
-      {/* {verified ? // always returning true atm
-        <h3 className="bubble-alias">{alias} <VerifiedIcon /></h3>
-        :
-      } */}
       <p className="bubble-msg">{trimStart(message, 120)}</p>
     </section>
   );
