@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from "react";
-import { TextField } from "../input";
+import { FC, useCallback, useEffect, useState } from "react";
+import { ColorPicker, TextField } from "../input";
 import "../css/signUpForm.css"
 import { PasswordField } from "../input/PasswordField";
 import { gql, useMutation } from "@apollo/client";
@@ -81,16 +81,16 @@ export const SignUpForm: FC<ISignUpFormProps> = ({
         })
       }}
       autoComplete="false"
-
     >
       <div className="sign-up-from">
         <h2>Sign up</h2>
-        <TextField placeholder="email" onChange={(nv) => onInputChange("email", nv)} />
+        <TextField placeholder="email" type="email" onChange={(nv) => onInputChange("email", nv)} />
         <TextField placeholder="alias" onChange={(nv) => onInputChange("alias", nv)} />
-        <TextField placeholder="color" onChange={(nv) => onInputChange("color", nv)} />
+        <p>Choose your color below: </p>
+        <ColorPicker defaultColor="#008000" onChange={(nv) => onInputChange("color", nv)} />
         <PasswordField placeholder="password" onChange={(nv) => onInputChange("password", nv)} />
-
         <PasswordField placeholder="confirm password" onChange={(nv) => setConfirmValue(nv)} />
+
         <p hidden={errMessage.length <= 0} style={{ color: "red" }}>{errMessage}</p>
         <button type="submit">Sign up</button>
         <button type="button" onClick={() => onBackClick()}>
