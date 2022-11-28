@@ -3,7 +3,6 @@ import { useLoginService, useSessionStorage } from "../hooks";
 import "./css/Panel.css";
 import { ColorPicker } from "./input/colorPicker/ColorPicker";
 import { TextField } from "./input";
-import "./css/GlobalStyles.css";
 import { ColorViewer } from "./input/colorPicker/ColorViewer";
 
 export interface IUserConfig {

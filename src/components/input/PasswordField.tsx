@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { ITextFieldProps } from "./TextField";
-import "../css/GlobalStyles.css";
 
 export const PasswordField: FC<ITextFieldProps> = ({
   label,
