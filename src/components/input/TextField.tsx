@@ -6,7 +6,6 @@ export interface ITextFieldProps {
   onChange?: (newValue: string) => void;
   style?: CSSProperties;
   defaultValue?: string;
-  // icons?: Icon;
   type?: string;
   disabled?: boolean
 }
@@ -17,7 +16,6 @@ export const TextField: FC<ITextFieldProps> = ({
   onChange,
   style,
   defaultValue,
-  // icons
   type,
   disabled
 
