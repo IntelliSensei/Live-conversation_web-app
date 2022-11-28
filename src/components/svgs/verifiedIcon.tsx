@@ -7,7 +7,7 @@ export const VerifiedIcon: FC = () => {
             id="Capa_1"
             width="24px"
             height="24px"
-            color="blue"
+            fill="#428bca"
             viewBox="0 0 910.288 910.287">
             <g>
                 <g>
