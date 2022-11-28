@@ -24,7 +24,7 @@ export interface LoginUser {
 export const LoginForm: FC<ILoginFormProps> = ({
   onSignUpClick,
 }: ILoginFormProps) => {
-  const { token, payload, loading, error, login, logout, isAuthorized } = useLoginService()
+  const { payload, login, logout, isAuthorized } = useLoginService()
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

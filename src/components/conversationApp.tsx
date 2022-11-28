@@ -1,4 +1,3 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { FC, useEffect, useState } from "react";
 import { useLoginService } from "../hooks";
 import { useConversation } from "../hooks/useConversation";
@@ -42,7 +41,7 @@ export const ConversationApp: FC<any> = ({ }) => {
                     key={c.id}
                     getInfo={(cb) =>
                         setTextBubbleInfo({ ...textBubbleInfo, [c.id]: cb })
-                    }
+                    }                   
                 />
             ))}
         </div>
