@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
-import { useSessionStorage } from "../hooks";
+import { useLoginService, useSessionStorage } from "../hooks";
 import "./css/Panel.css";
 import { ColorPicker } from "./input/colorPicker/ColorPicker";
 import { TextField } from "./input";
 import "./css/GlobalStyles.css";
+import { ColorViewer } from "./input/colorPicker/ColorViewer";
 
 export interface IUserConfig {
   alias: string;
@@ -33,6 +34,8 @@ export const Panel: FC<IPanelProps> = ({
     defaultConfig
   );
 
+
+  const { payload, isAuthorized } = useLoginService()
   const [message, setMessage] = useState("");
 
   useEffect(() => onChange && onChange({ ...userConfig, message }), [
@@ -44,8 +47,28 @@ export const Panel: FC<IPanelProps> = ({
     [message]
   );
 
+
+
+  if (isAuthorized && payload) {
+    return <div key={"login"} className="panel global-style">
+      <ColorViewer
+        selectedColor={payload.color}
+      />
+      <TextField
+        placeholder="Alias"
+        defaultValue={payload.alias}
+        disabled={true}
+      />
+      <TextField
+        placeholder="Message"
+        style={{ flexGrow: 2 }}
+        onChange={(message) => setMessage(message)}
+      />
+    </div>
+  }
+
   return (
-    <div className="panel global-style">
+    <div key={"anonymous"} className="panel global-style">
       <ColorPicker
         defaultColor={userConfig.color}
         onChange={(color) => {

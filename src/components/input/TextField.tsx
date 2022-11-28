@@ -9,6 +9,7 @@ export interface ITextFieldProps {
   defaultValue?: string;
   // icons?: Icon;
   type?: string;
+  disabled?: boolean
 }
 
 export const TextField: FC<ITextFieldProps> = ({
@@ -18,7 +19,8 @@ export const TextField: FC<ITextFieldProps> = ({
   style,
   defaultValue,
   // icons
-  type
+  type,
+  disabled
 
 }: ITextFieldProps) => {
 
@@ -33,6 +35,7 @@ export const TextField: FC<ITextFieldProps> = ({
         }}  
         placeholder={placeholder}
         type={type}
+        disabled={disabled}
         className='global-style'
         defaultValue={defaultValue}
         autoComplete="off"
