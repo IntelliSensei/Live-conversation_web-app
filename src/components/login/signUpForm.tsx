@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { ColorPicker, TextField } from "../input";
 import "../css/signUpForm.css"
 import { PasswordField } from "../input/PasswordField";
@@ -61,7 +61,6 @@ export const SignUpForm: FC<ISignUpFormProps> = ({
           }
         }
 
-        // password complexity
         // password missmatch 
         if (confirmValue.localeCompare(registerInput.password) !== 0) {
           setErrMessage(`The passwords do not match`)
@@ -73,10 +72,8 @@ export const SignUpForm: FC<ISignUpFormProps> = ({
             registerInput
           },
         }).then(() => {
-          //check if password and confirmPassword matches - if it doesnt, send error
           console.log("User registered");
           setErrMessage("");
-          // if user is successfully registered, show sign in panel with msg "successfully registered"
           onBackClick()
         })
       }}

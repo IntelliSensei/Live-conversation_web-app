@@ -17,7 +17,6 @@ export const SidePanel: FC<ISidePanelProps> = ({
   return (
     <div className="side-panel" data-open={isOpen}>
       <div className="header">
-        {/* <div onClick={() => onDismiss()}>X</div> */}
         <div className="close" onClick={() => onDismiss()}>
           <CloseIcon />
         </div>

@@ -1,9 +1,8 @@
 import { FC, useEffect, useState } from "react";
-import { ColorPicker, TextField } from "../input";
+import { TextField } from "../input";
 import "../css/loginForm.css";
 import { PasswordField } from "../input/PasswordField";
-import { useLoginService, useSessionStorage } from "../../hooks";
-import { IUserConfig } from "../Panel";
+import { useLoginService } from "../../hooks";
 
 interface ILoginFormProps {
   onSignUpClick: () => void;
@@ -25,12 +24,13 @@ export const LoginForm: FC<ILoginFormProps> = ({
   onSignUpClick,
 }: ILoginFormProps) => {
   const { payload, login, logout, isAuthorized } = useLoginService()
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => console.log("aaa", isAuthorized), [isAuthorized])
-  
+
+  const [errMessage, setErrMessage] = useState("");
+
+
   if (isAuthorized) {
     return <div>
       <div className="loggedin-user-info">
@@ -44,22 +44,21 @@ export const LoginForm: FC<ILoginFormProps> = ({
       </button>
     </div>
   }
-
-
+  
   return (
     <form
-      onSubmit={async (ev) => {
-        ev.preventDefault();
-        await login(email, password);
-        
-      }}
-      autoComplete="off"
+    onSubmit={async (ev) => {
+      ev.preventDefault();
+      await login(email, password);
+    }}
+    autoComplete="off"
     >
       <div className="login-form" >
         <h2>Login</h2>
         <TextField placeholder="email" onChange={(nv) => setEmail(nv)} />
         <PasswordField placeholder="password" onChange={(nv) => setPassword(nv)} />
 
+        <p hidden={errMessage.length <= 0} style={{ color: "red" }}>{errMessage}</p>
 
         <button type="submit">Log in</button>
         <button type="button" onClick={() => onSignUpClick()}>
@@ -67,6 +66,5 @@ export const LoginForm: FC<ILoginFormProps> = ({
         </button>
       </div>
     </form>
-
   );
 };
