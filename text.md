@@ -13,7 +13,7 @@ We want to give the users the ability to register themselves, sign in and use th
 - [x] Store user token on client side
 
 ### As a user I want to be able to sign up
-- [ ] Create webcomponent that allows user to sign up
+- [x] Create webcomponent that allows user to sign up
 - [x] Create endpoint that lets an anonymous user sign up 
 
 ### As a user I want to be able to configure my preferences
