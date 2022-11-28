@@ -64,7 +64,7 @@ export const SignUpForm: FC<ISignUpFormProps> = ({
         // password complexity
         // password missmatch 
         if (confirmValue.localeCompare(registerInput.password) !== 0) {
-          setErrMessage(`The passwords does not match`)
+          setErrMessage(`The passwords do not match`)
           return;
         }
 
