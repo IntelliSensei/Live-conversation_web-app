@@ -16,7 +16,6 @@ export const useLoginService = () => {
 
     const [token, setToken] = useSessionStorage("token", "");
     const [payload, setPayload] = useState<ITokenPayload | undefined>();
-
     const [loginUser, { data, loading, error }] = useMutation<LoginOutput>(gql`
     mutation LoginUser($loginInput: LoginInput) {
       loginUser(loginInput: $loginInput) {
@@ -35,7 +34,7 @@ export const useLoginService = () => {
         }
     }, [token]);
 
-    const login = useCallback(async (username: string, password: string) => {
+    const login = useCallback(async (username: string, password: string ) => {
         const data = await loginUser({
             variables: {
                 loginInput: {
@@ -45,12 +44,13 @@ export const useLoginService = () => {
             },
         });
         setToken(data.data?.loginUser.token || "");
+        window.location.href = "/?"
     }, []);
 
     const logout = useCallback(() => {
         setToken("");
+        window.location.href = "/?"
     }, [setToken])
-
 
     const [isAuthorized, setIsAuthorized] = useState(false);
     useEffect(() => {
