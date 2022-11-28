@@ -15,7 +15,6 @@ export const LoginField = () => {
     <div className="login-field-container">
       <div className="login-open-dialog" onClick={() => setSidePanelOpen(true)}>
         {isAuthorized ? <UserIcon /> : <LoginIcon /> }
-        
       </div>
       <SidePanel
         isOpen={sidePanelOpen}
