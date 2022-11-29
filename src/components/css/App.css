@@ -2,3 +2,25 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    width: 100%;
+    top: 30px;
+    left: -20px;    
+}
+
+.top-bar button {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #428bca;
+    color: white;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}

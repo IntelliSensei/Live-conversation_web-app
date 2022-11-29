@@ -1,14 +1,13 @@
 import React, { CSSProperties, FC } from "react";
-import "../css/GlobalStyles.css"
-
 
 export interface ITextFieldProps {
   label?: string;
   placeholder?: string;
   onChange?: (newValue: string) => void;
   style?: CSSProperties;
-  defaultValue?: string
-  // icons?: Icon;
+  defaultValue?: string;
+  type?: string;
+  disabled?: boolean
 }
 
 export const TextField: FC<ITextFieldProps> = ({
@@ -16,8 +15,9 @@ export const TextField: FC<ITextFieldProps> = ({
   placeholder,
   onChange,
   style,
-  defaultValue
-  // icons
+  defaultValue,
+  type,
+  disabled
 
 }: ITextFieldProps) => {
 
@@ -31,8 +31,11 @@ export const TextField: FC<ITextFieldProps> = ({
           if (onChange) onChange(newVal);
         }}  
         placeholder={placeholder}
+        type={type}
+        disabled={disabled}
         className='global-style'
         defaultValue={defaultValue}
+        autoComplete="off"
       />
     </div>
   );

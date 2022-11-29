@@ -7,6 +7,7 @@ import {
   IConversationPackage,
   ConversationType,
 } from "../types/Conversation";
+import { useLoginService, ITokenPayload } from "./useLoginService";
 
 export const useConversation = (socketUrl: string) => {
   const [messageArray, setMessageArray] = useState<IConversationPackage[]>([]);
@@ -45,7 +46,13 @@ export const useConversation = (socketUrl: string) => {
   }, [lastJsonMessage]);
 
   const sendConversation = useCallback((data: IWSMessagePKG) => {
+    // if (isAuthorized && payload) {
+    //   sendJsonMessage({ type: "CONVERSATION_JWT", ...payload, message: data.message })
     sendJsonMessage({ type: "CONVERSATION", ...data });
+  }, []);
+
+  const sendJWTConversation = useCallback((token: string, message: string) => {
+    sendJsonMessage({ type: "CONVERSATION_JWT", token, message })
   }, []);
 
   const removeConversations = useCallback((id: string) => {
@@ -62,5 +69,5 @@ export const useConversation = (socketUrl: string) => {
     };
   }, [initiateArray, conversationArray]);
 
-  return { sendConversation, lastJsonMessage, messageGroups, conversations, removeConversations };
+  return { sendConversation, sendJWTConversation, lastJsonMessage, messageGroups, conversations, removeConversations };
 };

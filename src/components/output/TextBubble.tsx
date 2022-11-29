@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { trimStart } from "../../util";
 import "../css/TextBubble.css";
+import { VerifiedIcon } from "../svgs";
 
 export interface ITextBubbleInfo {
   width: number;
@@ -14,6 +15,7 @@ interface ITextBubbleProps {
   alias: string;
   color: string;
   message: string;
+  verified?: boolean;
   getInfo?: (myInfo: () => ITextBubbleInfo) => void;
 }
 
@@ -34,6 +36,7 @@ export const TextBubble: FC<ITextBubbleProps> = ({
   alias,
   color,
   message,
+  verified,
   getInfo,
 }: ITextBubbleProps) => {
 
@@ -44,7 +47,6 @@ export const TextBubble: FC<ITextBubbleProps> = ({
     return {
       timeToLive,
       top: Number(positions.top),
-      
       left: Number(positions.left),
       height: 300,
       width: 150,
@@ -62,13 +64,17 @@ export const TextBubble: FC<ITextBubbleProps> = ({
     return () => clearInterval(id)
   }, [message])
 
-  if (timeToLive < 0) return <div></div>;
+  if (timeToLive < 0 || message.length < 1) return <div></div>;
+  // if (message.length < 1) return <div></div>
+
   return (
     <section
-    className="textBubble"
-    style={{ backgroundColor: color, ...positions }}
+      className="textBubble"
+      style={{ backgroundColor: color, ...positions }}
     >
-      <h3 className="bubble-alias">{alias}</h3>
+      <h3 className="bubble-alias">{alias}
+        {verified && <VerifiedIcon />}
+      </h3>
       <p className="bubble-msg">{trimStart(message, 120)}</p>
     </section>
   );

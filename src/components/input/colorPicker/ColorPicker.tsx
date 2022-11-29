@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import "../../css/ColorPicker.ColorPicker.css";
 import { ColorPalette } from "./ColorPalette";
+import { ColorViewer } from "./ColorViewer";
 
 export interface IColorPicker {
   defaultColor?: string;
@@ -16,15 +17,10 @@ export const ColorPicker: FC<IColorPicker> = ({
 
   return (
     <div className="color-picker">
-      <div
-        className="color-selector"
-        onClick={() => setShowPalette(!showPalette)}
-      >
-        <div
-          className="selected-color"
-          style={{ backgroundColor: selectColor }}
-        ></div>
-      </div>
+    <ColorViewer 
+      selectedColor={selectColor}
+      onClick={() => setShowPalette(!showPalette)}
+    />
       <div className="palette-position">
         <div
           className="palette-container"

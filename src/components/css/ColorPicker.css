@@ -3,10 +3,7 @@
   border-radius: 5px;
   background-color: #265cc82d;
   display: flex;
-  /* flex-direction: row; */
   align-items: center;
-  /* position: fixed; */
-  /* margin-top: 30%; */
   text-align: center;
   flex-grow: 1;
 }
