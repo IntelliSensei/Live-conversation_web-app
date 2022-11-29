@@ -1,11 +1,12 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client"
 import "./components/css/App.css"
 import { ConversationApp } from "./components/conversationApp";
+import { environment } from "./util/env";
 
 export default function App() {
 
   const client = new ApolloClient({
-    uri: 'http://localhost:4000/', // should come from dotenv
+    uri: environment.APOLLO, // should come from dotenv
     cache: new InMemoryCache(),
 });
 
