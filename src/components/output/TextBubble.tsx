@@ -64,8 +64,8 @@ export const TextBubble: FC<ITextBubbleProps> = ({
     return () => clearInterval(id)
   }, [message])
 
-  if (timeToLive < 0) return <div></div>;
-  if (message.length < 1) return <div></div>
+  if (timeToLive < 0 || message.length < 1) return <div></div>;
+  // if (message.length < 1) return <div></div>
 
   return (
     <section
