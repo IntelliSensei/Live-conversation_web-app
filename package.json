@@ -30,7 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "buildStart": "npm run build && npm start"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0"
+    "@types/bcrypt": "^5.0.0",
+    "@types/dotenv": "^8.2.0"
   }
 }
