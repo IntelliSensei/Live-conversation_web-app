@@ -23,13 +23,21 @@ export interface LoginUser {
 export const LoginForm: FC<ILoginFormProps> = ({
   onSignUpClick,
 }: ILoginFormProps) => {
-  const { payload, login, logout, isAuthorized } = useLoginService()
+
+  const { payload, login, logout, isAuthorized, error } = useLoginService()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
   const [errMessage, setErrMessage] = useState("");
 
+
+  // if email or password is invalid - send error to user 
+  useEffect(() => {
+    if (error) {
+      setErrMessage(error.message)
+    } else {
+      setErrMessage("")
+    }
+  }, [error])
 
   if (isAuthorized) {
     return <div>
@@ -44,14 +52,14 @@ export const LoginForm: FC<ILoginFormProps> = ({
       </button>
     </div>
   }
-  
+
   return (
     <form
-    onSubmit={async (ev) => {
-      ev.preventDefault();
-      await login(email, password);
-    }}
-    autoComplete="off"
+      onSubmit={async (ev) => {
+        ev.preventDefault();
+        await login(email, password)
+      }}
+      autoComplete="off"
     >
       <div className="login-form" >
         <h2>Login</h2>
@@ -59,7 +67,6 @@ export const LoginForm: FC<ILoginFormProps> = ({
         <PasswordField placeholder="password" onChange={(nv) => setPassword(nv)} />
 
         <p hidden={errMessage.length <= 0} style={{ color: "red" }}>{errMessage}</p>
-
         <button type="submit">Log in</button>
         <button type="button" onClick={() => onSignUpClick()}>
           Sign up
