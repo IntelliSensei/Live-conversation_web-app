@@ -4,7 +4,14 @@ export interface IEnv {
     APOLLO: string
 }
 
+if(!process.env.WEBSOCKET) {
+    throw new Error("WEBSOCKET is required")
+}
+if(!process.env.APOLLO) {
+    throw new Error("APOLLO is required")
+}
+
 export const environment = {
-    APOLLO: process.env.REACT_APP_APOLLO || "localhost:4000",
-    WEBSOCKET: process.env.REACT_APP_WEBSOCKET || "localhost:8999",
+    APOLLO: process.env.REACT_APP_APOLLO,
+    WEBSOCKET: process.env.REACT_APP_WEBSOCKET,
 } as IEnv
