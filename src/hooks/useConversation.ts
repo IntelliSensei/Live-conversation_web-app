@@ -7,7 +7,6 @@ import {
   IConversationPackage,
   ConversationType,
 } from "../types/Conversation";
-import { useLoginService, ITokenPayload } from "./useLoginService";
 
 export const useConversation = (socketUrl: string) => {
   const [messageArray, setMessageArray] = useState<IConversationPackage[]>([]);

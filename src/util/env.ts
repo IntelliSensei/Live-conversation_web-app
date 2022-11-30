@@ -4,12 +4,12 @@ export interface IEnv {
     APOLLO: string
 }
 
-if(!process.env.WEBSOCKET) {
-    throw new Error("WEBSOCKET is required")
-}
-if(!process.env.APOLLO) {
-    throw new Error("APOLLO is required")
-}
+// if(!process.env.WEBSOCKET) {
+//     throw new Error("WEBSOCKET is required")
+// }
+// if(!process.env.APOLLO) {
+//     throw new Error("APOLLO is required")
+// } ask bardia where this should be 
 
 export const environment = {
     APOLLO: process.env.REACT_APP_APOLLO,
