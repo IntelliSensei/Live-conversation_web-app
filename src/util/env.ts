@@ -1,7 +1,8 @@
 export interface IEnv {
-    SKIP_PREFLIGHT_CHECK: string
-    WEBSOCKET: string
-    APOLLO: string
+  SKIP_PREFLIGHT_CHECK: string;
+  WEBSOCKET: string;
+  APOLLO: string;
+  WS_PATH_REL: boolean;
 }
 
 if(!process.env.WEBSOCKET) {
@@ -12,6 +13,7 @@ if(!process.env.APOLLO) {
 }
 
 export const environment = {
-    APOLLO: process.env.REACT_APP_APOLLO,
-    WEBSOCKET: process.env.REACT_APP_WEBSOCKET,
-} as IEnv
+  APOLLO: process.env.REACT_APP_APOLLO || "localhost:4000",
+  WEBSOCKET: process.env.REACT_APP_WEBSOCKET || "ws://localhost:8999",
+  WS_PATH_REL: Boolean(process.env.REACT_APP_WS_PATH_REL),
+} as IEnv;
