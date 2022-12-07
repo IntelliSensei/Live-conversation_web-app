@@ -5,10 +5,10 @@ export interface IEnv {
   WS_PATH_REL: boolean;
 }
 
-if(!process.env.WEBSOCKET) {
+if(!process.env.REACT_APP_WEBSOCKET) {
     throw new Error("WEBSOCKET is required")
 }
-if(!process.env.APOLLO) {
+if(!process.env.REACT_APP_APOLLO) {
     throw new Error("APOLLO is required")
 }
 
