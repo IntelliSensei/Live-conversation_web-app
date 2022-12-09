@@ -6,7 +6,7 @@ import { environment } from "./util/env";
 export default function App() {
 
   const client = new ApolloClient({
-    uri: environment.APOLLO, // should come from dotenv
+    uri: environment.APOLLO, 
     cache: new InMemoryCache(),
 });
 
